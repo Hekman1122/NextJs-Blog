@@ -1,8 +1,16 @@
 import { prisma } from "@/lib/prisma";
 import Article from "./Article";
-import { Post } from "@prisma/client";
-export default async function ArticlesContainers() {
-  let articles = await prisma.post.findMany({
+type ArticleContainerProps = {
+  currentPage: number;
+  articlePerPage: number;
+};
+export default async function ArticlesContainers({
+  currentPage,
+  articlePerPage,
+}: ArticleContainerProps) {
+  const articles = await prisma.post.findMany({
+    skip: (currentPage - 1) * articlePerPage,
+    take: articlePerPage,
     orderBy: {
       createdAt: "desc",
     },
