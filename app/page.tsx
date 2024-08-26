@@ -3,6 +3,7 @@ import HeroContainer from "@/components/Hero/HeroContainer";
 import SideContainer from "@/components/SideSection/SideContainer";
 import PaginationBar from "@/components/paginationBar";
 import { getArticleByPage } from "@/lib/paginationHelper";
+
 type SearchParams = {
   page?: string;
 };
